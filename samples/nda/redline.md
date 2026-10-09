@@ -1,6 +1,6 @@
 # Redline — Mutual NDA
 
-Pattern comments name the clause and the matched phrase. They are not legal advice and they are not a negotiation strategy.
+Comments name the clause and the matched phrase. They do not say whether the clause is enforceable.
 
 ## Counts
 
@@ -13,7 +13,7 @@ Pattern comments name the clause and the matched phrase. They are not legal advi
 | added | 0 |
 | removed | 0 |
 | moved | 3 |
-| risks | 7 |
+| risks | 10 |
 | xrefs | 1 |
 
 ## Clauses
@@ -35,19 +35,22 @@ Pattern comments name the clause and the matched phrase. They are not legal advi
 ## Comments
 
 - **Defined term edited.** “Confidential Information” does not mean the same thing it meant in the original. Matched “Confidential Information”.
-- **Wording broadened.** The revised wording adds expansive phrases or drops a limit. Pattern only — not a legal conclusion.
+- **Wording broadened.** The revised wording adds expansive phrases or drops a limit.
+- **Endeavours lowered.** The original required best endeavours. The revised text requires reasonable endeavours. Matched “reasonable endeavours”.
 - **Sentence moved.** A full sentence left one clause and landed in another. It is marked as a move, not as a fresh insertion.
 - **Clause moved.** “Notices” moved from §9 Notices to §4 Notices.
+- **Notices by email only.** Service is allowed by email with no postal alternative. Matched “email alone”.
 - **Auto-renewal.** Matched “shall automatically renew”. The revised clause renews on its own unless someone gives notice. Matched “shall automatically renew”.
-- **Shortened limitation period.** The stated period moved from “two (2) years” to “one (1) year”. Matched “one (1) year”.
 - **Sentence moved.** Every sentence in this clause was carried into another clause. Nothing was simply deleted.
 - **Unlimited liability.** Matched “liability shall be unlimited”. A cap that used to apply is gone, or liability is stated as unlimited. Matched “liability shall be unlimited”.
 - **One-way indemnity.** Only one side indemnifies. The original was mutual, or had no indemnity. Matched “Indemnity The Receiving Party shall indemnify the Disclosing Party against any and all claims arising from its breach of this Agreement, and its liability shall be unlimited for consequential damages”.
-- **Wording broadened.** The revised wording adds expansive phrases or drops a limit. Pattern only — not a legal conclusion.
+- **Wording broadened.** The revised wording adds expansive phrases or drops a limit.
 - **Assignment without consent.** The revised text lets a party assign without the other party's consent. Matched “Assignment The Disclosing Party may assign this Agreement without the consent of the Receiving Party, including to an affiliate”.
-- **Wording broadened.** The revised wording adds expansive phrases or drops a limit. Pattern only — not a legal conclusion.
-- **Waiver of jury trial.** Matched “waives its right to a jury trial”. Matched “waives its right to a jury trial”.
-- **Governing law swap.** Governing law moved from Delaware to New York. Matched “New York”.
+- **Wording broadened.** The revised wording adds expansive phrases or drops a limit.
+- **Governing law changed.** Governing law moved from “England and Wales” to “New York”. Matched “New York”.
+- **Exclusive jurisdiction dropped.** The original submitted to the exclusive jurisdiction of the courts of England and Wales. Matched “non-exclusive jurisdiction of the courts of New York”.
+- **Personal injury exclusion.** The revised text excludes or caps liability for death or personal injury. Read section 2(1) of the Unfair Contract Terms Act 1977 against the clause. This comment does not decide it. Matched “The Receiving Party may exclude liability for death or personal injury caused by negligence”.
+- **Third party rights.** The original excluded the Contracts (Rights of Third Parties) Act 1999. The revised text does not. Matched “Contracts (Rights of Third Parties) Act 1999”.
 - **Moved from here.** This clause now sits at §4 Notices.
 - **Stale cross-reference.** “Section 9” still uses the old number. Section 9 is now “Entire Agreement”. In the original it was “Notices”. Matched “Section 9”.
 - **Renumbered.** Was §10 Entire Agreement. The words did not change.

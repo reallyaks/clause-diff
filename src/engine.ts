@@ -206,9 +206,56 @@ function oneWayIndemnity(text: string): string | null {
   return match ? normalizeSpace(match[0]) : null;
 }
 
-function jurisdiction(text: string): string | null {
-  const match = text.match(/laws of (?:the )?(?:State of )?([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)/);
-  return match?.[1] ?? null;
+function claimPeriod(text: string): { days: number; phrase: string } | null {
+  if (!/\b(limitation|bring a claim|brought within|a claim must be brought|Limitation Act)\b/i.test(text)) return null;
+  return durationDays(text);
+}
+
+function lawChoice(text: string): { name: string; phrase: string } | null {
+  const rules: [RegExp, string][] = [
+    [/England and Wales/, "England and Wales"],
+    [/Scots law|laws of Scotland/, "Scotland"],
+    [/Northern Ireland/, "Northern Ireland"],
+    [/law of Ireland|laws of Ireland/, "Ireland"],
+    [/New York/, "New York"],
+  ];
+  for (const [pattern, name] of rules) {
+    const match = text.match(pattern);
+    if (match) return { name, phrase: match[0] };
+  }
+  return null;
+}
+
+function forumChoice(text: string): { exclusive: boolean; courts: string; phrase: string } | null {
+  const match = text.match(
+    /((?:non-exclusive|exclusive)\s+jurisdiction of the courts of [^.]*)/i,
+  );
+  if (!match) return null;
+  const phrase = normalizeSpace(match[1]);
+  const courts = phrase.replace(/^.*courts of\s+/i, "").replace(/\s+to\s+.*$/, "");
+  return { exclusive: /^exclusive\b/i.test(phrase), courts: normalizeSpace(courts), phrase };
+}
+
+function personalInjuryExclusion(text: string): string | null {
+  if (/nothing in this agreement (?:limits|excludes)[^.]{0,80}death or personal injury/i.test(text)) return null;
+  const match = text.match(
+    /[^.]*\b(?:exclud\w+|cap\w+|limit\w+)\b[^.]*\b(?:death or personal injury|personal injury or death)\b[^.]*/i,
+  );
+  return match ? normalizeSpace(match[0]) : null;
+}
+
+function excludesThirdPartyRights(text: string): boolean {
+  return (
+    /contracts \(rights of third parties\) act 1999/i.test(text) &&
+    /no right|shall not|does not confer|no person who is not a party/i.test(text)
+  );
+}
+
+function endeavoursLevel(text: string): "best" | "all reasonable" | "reasonable" | null {
+  if (/all reasonable endeavours/i.test(text)) return "all reasonable";
+  if (/best endeavours/i.test(text)) return "best";
+  if (/reasonable endeavours/i.test(text)) return "reasonable";
+  return null;
 }
 
 function riskNotes(before: string, after: string): Omit<Note, "id">[] {
@@ -248,26 +295,74 @@ function riskNotes(before: string, after: string): Omit<Note, "id">[] {
       "The revised text lets a party assign without the other party's consent.",
     );
   }
-  const jury = after.match(/waiv\w+[^.]{0,48}jury(?: trial)?/i);
-  if (jury && !/jury/i.test(before)) {
-    push("Waiver of jury trial", jury[0], `Matched “${jury[0]}”.`);
+  const beforeLaw = lawChoice(before);
+  const afterLaw = lawChoice(after);
+  if (beforeLaw && afterLaw && beforeLaw.name !== afterLaw.name) {
+    push(
+      "Governing law changed",
+      afterLaw.phrase,
+      `Governing law moved from “${beforeLaw.phrase}” to “${afterLaw.phrase}”.`,
+    );
   }
-  const left = durationDays(before);
-  const right = durationDays(after);
+  const beforeForum = forumChoice(before);
+  const afterForum = forumChoice(after);
+  if (beforeForum?.exclusive && afterForum && !afterForum.exclusive) {
+    push(
+      "Exclusive jurisdiction dropped",
+      afterForum.phrase,
+      `The original submitted to the exclusive jurisdiction of the courts of ${beforeForum.courts}.`,
+    );
+  } else if (beforeForum && afterForum && beforeForum.courts !== afterForum.courts) {
+    push(
+      "Forum changed",
+      afterForum.phrase,
+      `The chosen courts moved from ${beforeForum.courts} to ${afterForum.courts}.`,
+    );
+  }
+  const injury = personalInjuryExclusion(after);
+  if (injury && !personalInjuryExclusion(before)) {
+    push(
+      "Personal injury exclusion",
+      injury,
+      "The revised text excludes or caps liability for death or personal injury. Read section 2(1) of the Unfair Contract Terms Act 1977 against the clause. This comment does not decide it.",
+    );
+  }
+  if (excludesThirdPartyRights(before) && !excludesThirdPartyRights(after)) {
+    push(
+      "Third party rights",
+      "Contracts (Rights of Third Parties) Act 1999",
+      "The original excluded the Contracts (Rights of Third Parties) Act 1999. The revised text does not.",
+    );
+  }
+  const beforeEffort = endeavoursLevel(before);
+  const afterEffort = endeavoursLevel(after);
+  if (beforeEffort === "best" && (afterEffort === "reasonable" || afterEffort === "all reasonable")) {
+    const phrase = after.match(/all reasonable endeavours|reasonable endeavours/i)?.[0] ?? "reasonable endeavours";
+    push(
+      "Endeavours lowered",
+      phrase,
+      `The original required best endeavours. The revised text requires ${afterEffort} endeavours.`,
+    );
+  }
+  const emailOnly = after.match(/email alone|solely by email|by email only/i);
+  if (emailOnly && !/email alone|solely by email|by email only/i.test(before)) {
+    push("Notices by email only", emailOnly[0], "Service is allowed by email with no postal alternative.");
+  }
+  const restraint = after.match(/[^.]*\bshall not solicit\b[^.]*/i);
+  if (restraint && !/\bsolicit\b/i.test(before)) {
+    push(
+      "Non-solicit added",
+      normalizeSpace(restraint[0]),
+      "A new restraint. Duration, geography, and the interest being protected are not assessed.",
+    );
+  }
+  const left = claimPeriod(before);
+  const right = claimPeriod(after);
   if (left && right && right.days < left.days) {
     push(
       "Shortened limitation period",
       right.phrase,
       `The stated period moved from “${left.phrase}” to “${right.phrase}”.`,
-    );
-  }
-  const fromLaw = jurisdiction(before);
-  const toLaw = jurisdiction(after);
-  if (fromLaw && toLaw && fromLaw !== toLaw) {
-    push(
-      "Governing law swap",
-      toLaw,
-      `Governing law moved from ${fromLaw} to ${toLaw}.`,
     );
   }
   return notes;
@@ -532,8 +627,8 @@ function emitAligned(
         title: scope === "broadened" ? "Wording broadened" : "Wording narrowed",
         body:
           scope === "broadened"
-            ? "The revised wording adds expansive phrases or drops a limit. Pattern only — not a legal conclusion."
-            : "The revised wording adds a limit or swaps a hard duty for a softer one. Pattern only — not a legal conclusion.",
+            ? "The revised wording adds expansive phrases or drops a limit."
+            : "The revised wording adds a limit or replaces a stricter duty with a softer one.",
       });
     }
   }
@@ -576,7 +671,7 @@ function emitMoveDestination(before: Clause, after: Clause): Omit<Block, "notes"
     pending.push({
       kind: "scope",
       title: scope === "broadened" ? "Wording broadened" : "Wording narrowed",
-      body: "The moved clause also changed scope. Pattern only — not a legal conclusion.",
+      body: "The moved clause also changed in scope.",
     });
   }
   return {
@@ -677,7 +772,7 @@ export function toSummaryMarkdown(redline: Redline): string {
   const lines = [
     `# Redline — ${redline.name}`,
     "",
-    "Pattern comments name the clause and the matched phrase. They are not legal advice and they are not a negotiation strategy.",
+    "Comments name the clause and the matched phrase. They do not say whether the clause is enforceable.",
     "",
     "## Counts",
     "",

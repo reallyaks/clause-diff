@@ -1,6 +1,6 @@
 # Redline — SaaS order form
 
-Pattern comments name the clause and the matched phrase. They are not legal advice and they are not a negotiation strategy.
+Comments name the clause and the matched phrase. They do not say whether the clause is enforceable.
 
 ## Counts
 
@@ -13,7 +13,7 @@ Pattern comments name the clause and the matched phrase. They are not legal advi
 | added | 1 |
 | removed | 0 |
 | moved | 0 |
-| risks | 4 |
+| risks | 5 |
 | xrefs | 1 |
 
 ## Clauses
@@ -31,8 +31,9 @@ Pattern comments name the clause and the matched phrase. They are not legal advi
 
 - **Auto-renewal.** Matched “shall automatically renew”. The revised clause renews on its own unless someone gives notice. Matched “shall automatically renew”.
 - **Unlimited liability.** Matched “liability shall be unlimited”. A cap that used to apply is gone, or liability is stated as unlimited. Matched “liability shall be unlimited”.
-- **Wording broadened.** The revised wording adds expansive phrases or drops a limit. Pattern only — not a legal conclusion.
+- **Wording broadened.** The revised wording adds expansive phrases or drops a limit.
 - **Clause added.** This clause has no counterpart in the original.
-- **Assignment without consent.** The revised text lets a party assign without the other party's consent. Matched “Assignment Vendor may assign this Order without the consent of Customer”.
-- **Governing law swap.** Governing law moved from California to Texas. Matched “Texas”.
+- **Assignment without consent.** The revised text lets a party assign without the other party's consent. Matched “Assignment The Supplier may assign this Order without the consent of the Customer”.
+- **Governing law changed.** Governing law moved from “England and Wales” to “New York”. Matched “New York”.
+- **Exclusive jurisdiction dropped.** The original submitted to the exclusive jurisdiction of the courts of England and Wales. Matched “non-exclusive jurisdiction of the courts of New York”.
 - **Broken cross-reference.** “Section 7” does not match a section in the revised draft. Matched “Section 7”.

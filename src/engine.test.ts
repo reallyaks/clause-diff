@@ -10,6 +10,17 @@ const nda = SAMPLES[0];
 describe("clause diff", () => {
   const redline = compareDrafts(nda.name, nda.original, nda.revised);
 
+  it("flags a move off England and Wales and does not look for a jury waiver", () => {
+    const law = redline.blocks.find((block) => block.toLabel.includes("Governing Law"));
+    assert.ok(law);
+    const titles = law.notes.map((note) => note.title);
+    assert.ok(titles.includes("Governing law changed"));
+    assert.ok(titles.includes("Third party rights"));
+    assert.equal(titles.some((title) => /\bjury\b/i.test(title)), false);
+    const joined = JSON.stringify(redline);
+    assert.equal(/\bjury\b/i.test(joined), false);
+  });
+
   it("flags auto-renewal on the term and names the phrase", () => {
     const term = redline.blocks.find((block) => block.toLabel.includes("Term"));
     assert.ok(term);

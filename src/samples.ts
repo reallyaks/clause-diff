@@ -26,7 +26,7 @@ const ndaOriginal: DraftClause[] = [
   {
     number: "3",
     title: "Obligations",
-    body: "The Receiving Party shall protect Confidential Information using reasonable care and shall use it only for the Purpose.",
+    body: "The Receiving Party shall use best endeavours to keep Confidential Information confidential and shall use it only for the Purpose.",
   },
   {
     number: "4",
@@ -51,12 +51,12 @@ const ndaOriginal: DraftClause[] = [
   {
     number: "8",
     title: "Governing Law",
-    body: "This Agreement is governed by the laws of the State of Delaware.",
+    body: "This Agreement is governed by the law of England and Wales. The parties submit to the exclusive jurisdiction of the courts of England and Wales. A person who is not a party has no right under the Contracts (Rights of Third Parties) Act 1999 to enforce any term. Nothing in this Agreement limits or excludes liability for death or personal injury caused by negligence.",
   },
   {
     number: "9",
     title: "Notices",
-    body: "Notices shall be sent by certified mail to the addresses on the signature page.",
+    body: "Notices shall be in writing and delivered by hand or by first-class post to the addresses on the signature page.",
   },
   {
     number: "10",
@@ -75,12 +75,12 @@ const ndaRevised: DraftClause[] = [
   {
     number: "3",
     title: "Obligations",
-    body: "The Receiving Party shall protect Confidential Information using reasonable care and shall use it only for the Purpose. Upon request, the Receiving Party shall return or destroy all Confidential Information.",
+    body: "The Receiving Party shall use reasonable endeavours to keep Confidential Information confidential and shall use it only for the Purpose. Upon request, the Receiving Party shall return or destroy all Confidential Information.",
   },
   {
     number: "4",
     title: "Notices",
-    body: "Notices shall be sent by overnight courier to the addresses on the signature page.",
+    body: "Notices shall be in writing and may be sent by email alone to the addresses on the signature page.",
   },
   {
     number: "5",
@@ -100,7 +100,7 @@ const ndaRevised: DraftClause[] = [
   {
     number: "8",
     title: "Governing Law",
-    body: "This Agreement is governed by the laws of the State of New York, and each party waives its right to a jury trial.",
+    body: "This Agreement is governed by the law of New York. The parties submit to the non-exclusive jurisdiction of the courts of New York. The Receiving Party may exclude liability for death or personal injury caused by negligence.",
   },
   {
     number: "9",
@@ -113,12 +113,12 @@ const saasOriginal: DraftClause[] = [
   {
     number: "1",
     title: "Services",
-    body: "Northline Software LLC will provide the hosted workspace described in this Order Form to Customer.",
+    body: "Northline Software Ltd will provide the hosted workspace described in this Order Form to the Customer.",
   },
   {
     number: "2",
     title: "Fees",
-    body: "Customer shall pay $18,000 per year, due net thirty (30) days from the invoice date.",
+    body: "The Customer shall pay £18,000 per year, plus VAT, due 30 days from the invoice date.",
   },
   {
     number: "3",
@@ -133,7 +133,7 @@ const saasOriginal: DraftClause[] = [
   {
     number: "5",
     title: "Governing Law",
-    body: "This Order is governed by the laws of the State of California.",
+    body: "This Order is governed by the law of England and Wales. The parties submit to the exclusive jurisdiction of the courts of England and Wales.",
   },
 ];
 
@@ -142,7 +142,7 @@ const saasRevised: DraftClause[] = [
   {
     number: "2",
     title: "Fees",
-    body: "Customer shall pay $24,000 per year, due net thirty (30) days from the invoice date.",
+    body: "The Customer shall pay £24,000 per year, plus VAT, due 30 days from the invoice date.",
   },
   {
     number: "3",
@@ -152,17 +152,17 @@ const saasRevised: DraftClause[] = [
   {
     number: "4",
     title: "Limitation of Liability",
-    body: "Customer's liability shall be unlimited. Vendor's aggregate liability is capped at the fees paid under this Order in the prior twelve (12) months.",
+    body: "The Customer's liability shall be unlimited. The Supplier's aggregate liability is capped at the fees paid under this Order in the prior twelve (12) months.",
   },
   {
     number: "5",
     title: "Assignment",
-    body: "Vendor may assign this Order without the consent of Customer.",
+    body: "The Supplier may assign this Order without the consent of the Customer.",
   },
   {
     number: "6",
     title: "Governing Law",
-    body: "This Order is governed by the laws of the State of Texas. Venue and notices under Section 7 shall follow the Vendor's then-current address.",
+    body: "This Order is governed by the law of New York. The parties submit to the non-exclusive jurisdiction of the courts of New York. Notices under Section 7 shall be sent to the Supplier's current address.",
   },
 ];
 
@@ -170,12 +170,12 @@ const contractorOriginal: DraftClause[] = [
   {
     number: "1",
     title: "Services",
-    body: "Contractor will design the Harbor Street wayfinding sketches described in the statement of work.",
+    body: "The Contractor will prepare the drawings described in the statement of work.",
   },
   {
     number: "2",
     title: "Payment",
-    body: "Client shall pay a fixed fee of $8,500, half on signature and half on delivery.",
+    body: "The Client shall pay a fixed fee of £8,500, plus VAT, half on signature and half on delivery.",
   },
   {
     number: "3",
@@ -190,12 +190,12 @@ const contractorOriginal: DraftClause[] = [
   {
     number: "5",
     title: "Limitation of Liability",
-    body: "Each party's aggregate liability is capped at the fees paid under this Agreement.",
+    body: "Each party's aggregate liability is capped at the fees paid under this Agreement. A claim must be brought within six (6) years of the cause of action accruing.",
   },
   {
     number: "6",
     title: "Governing Law",
-    body: "This Agreement is governed by the laws of the State of Illinois.",
+    body: "This Agreement is governed by the law of England and Wales. The parties submit to the exclusive jurisdiction of the courts of England and Wales.",
   },
 ];
 
@@ -204,7 +204,7 @@ const contractorRevised: DraftClause[] = [
   {
     number: "2",
     title: "Payment",
-    body: "Client shall pay a fixed fee of $11,000, half on signature and half on delivery.",
+    body: "The Client shall pay a fixed fee of £11,000, plus VAT, half on signature and half on delivery.",
   },
   {
     number: "3",
@@ -214,22 +214,27 @@ const contractorRevised: DraftClause[] = [
   {
     number: "4",
     title: "Intellectual Property",
-    body: "Contractor owns the deliverables and grants Client a non-exclusive license to use them for the Harbor Street project only.",
+    body: "The Contractor owns the deliverables and grants the Client a non-exclusive licence to use them for the project named in the statement of work.",
   },
   {
     number: "5",
     title: "Non-Solicit",
-    body: "Client shall not solicit Contractor's employees during the term and for one (1) year after it ends.",
+    body: "The Client shall not solicit the Contractor's employees during the term and for one (1) year after it ends.",
   },
   {
     number: "6",
-    title: "Governing Law",
-    body: "This Agreement is governed by the laws of the State of New York, and each party waives its right to a jury trial.",
+    title: "Limitation of Liability",
+    body: "Each party's aggregate liability is capped at the fees paid under this Agreement. A claim must be brought within twelve (12) months of the cause of action accruing.",
   },
   {
     number: "7",
+    title: "Governing Law",
+    body: "This Agreement is governed by Scots law. The parties submit to the non-exclusive jurisdiction of the courts of Scotland.",
+  },
+  {
+    number: "8",
     title: "Assignment",
-    body: "Contractor may assign this Agreement without the consent of Client.",
+    body: "The Contractor may assign this Agreement without the consent of the Client.",
   },
 ];
 
@@ -237,21 +242,21 @@ export const SAMPLES: SamplePair[] = [
   {
     id: "nda",
     name: "Mutual NDA",
-    blurb: "Fictional draft. Notices moves, a sentence moves, and Section 9 goes stale.",
+    blurb: "Notices move from clause 9 to clause 4. A sentence moves with them. Section 9 in the boilerplate is then wrong.",
     original: ndaOriginal,
     revised: ndaRevised,
   },
   {
     id: "saas",
     name: "SaaS order form",
-    blurb: "Fictional order. Auto-renewal, a new assignment clause, and a missing section cite.",
+    blurb: "The order starts to renew, the liability cap is cut, and the courts move off England and Wales.",
     original: saasOriginal,
     revised: saasRevised,
   },
   {
     id: "contractor",
     name: "Contractor agreement",
-    blurb: "Fictional services deal. Term shrinks, IP flips, and a jury waiver appears.",
+    blurb: "The claim period drops from six years to twelve months, and the governing law moves to Scotland.",
     original: contractorOriginal,
     revised: contractorRevised,
   },
