@@ -1,5 +1,7 @@
 # clause-diff
 
+Open [samples/nda/redline.md](samples/nda/redline.md) first. The matching Word file is [samples/nda/redline.docx](samples/nda/redline.docx).
+
 DOCX in, DOCX out. It aligns numbered clauses, keeps moves as moves, and writes Word tracked changes plus comment balloons.
 
 Not a chatbot. Not legal advice. The risk notes are phrase rules (auto-renewal, unlimited liability, one-way indemnity, assignment without consent, governing-law swap, jury waiver, shortened period). They name the clause and the matched phrase. They do not say what to sign.
