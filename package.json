@@ -1,0 +1,14 @@
+{
+  "name": "clause-diff",
+  "private": true,
+  "type": "module",
+  "description": "DOCX contract redline: clause alignment, moves, stale cross-references, and phrase-level risk comments.",
+  "scripts": {
+    "test": "node --experimental-strip-types --test src/engine.test.ts",
+    "samples": "node --experimental-strip-types src/make-samples.ts",
+    "diff": "node --experimental-strip-types src/cli.ts"
+  },
+  "dependencies": {
+    "jszip": "^3.10.1"
+  }
+}
